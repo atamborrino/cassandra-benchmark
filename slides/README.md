@@ -1,1 +1,1 @@
-Download and open index.html for the presentation (built with reveal.js).
+Download and open index.html (built with reveal.js).
