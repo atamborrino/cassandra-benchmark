@@ -2,7 +2,7 @@
 
 # Create a new instance with 4 nodes
 ccm create scenarioTwo -v 1.2.0
-ccm populate -n 4
+ccm populate -n 8
 ccm start
 export CASS_HOST=127.0.0.1
 echo -e '=== Nodes created and started ===\n'
@@ -19,10 +19,10 @@ echo -e '=== Cassandra Stress Program found ===\n'
 
 # Launch the cassandra-stress
 echo -e '=== Beginning to insert 10000 rows ===\n'
-tools/bin/cassandra-stress -d $CASS_HOST -l 3 -n 10000 -o insert
+tools/bin/cassandra-stress -d $CASS_HOST -l 3 -n 10000 -o insert #-e ONE
 echo -e '=== Insert 10000 OK === \n'
 echo -e '\n === Beginning to read 10000 rows === '
-tools/bin/cassandra-stress -d $CASS_HOST -l 3 -n 10000 -o read
+tools/bin/cassandra-stress -d $CASS_HOST -l 3 -n 10000 -o read #-e ALL
 echo -e '=== Read 10000 rows OK === \n'
 
 # Rendering the analysis
