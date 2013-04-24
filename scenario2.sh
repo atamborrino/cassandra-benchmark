@@ -8,7 +8,7 @@ export CASS_HOST=127.0.0.1
 echo -e '=== Nodes created and started ===\n'
 
 # Prediction module for logging the latencies
-wget http://downloads.sourceforge.net/cyclops-group/jmxterm-1.0-alpha-4-uber.jar
+#wget http://downloads.sourceforge.net/cyclops-group/jmxterm-1.0-alpha-4-uber.jar
 echo "run -b org.apache.cassandra.service:type=PBSPredictor enableConsistencyPredictionLogging" | java -jar jmxterm-1.0-alpha-4-uber.jar -l $CASS_HOST:7100
 echo -e '=== Prediction module loaded ===\n'
 
