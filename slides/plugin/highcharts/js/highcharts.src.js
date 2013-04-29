@@ -1566,7 +1566,7 @@ defaultOptions = {
 			allowPointSelect: false,
 			showCheckbox: false,
 			animation: {
-				duration: 1000
+				duration: 2000
 			},
 			//connectNulls: false,
 			//cursor: 'default',

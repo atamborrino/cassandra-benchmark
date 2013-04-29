@@ -6,7 +6,7 @@
 		<title>Highcharts Example</title>
 
 		<script src="../plugin/jquery/jquery.js"></script>
-        <script src="../plugin/highcharts/js/highcharts.js"></script>
+        <script src="../plugin/highcharts/js/highcharts.src.js"></script>
         <!-- <script src="../plugin/highcharts/js/modules/exporting.js"></script> -->
         <script type="text/javascript" src="../plugin/highcharts/js/themes/gray.js"></script>
 		<script type="text/javascript">
@@ -14,7 +14,7 @@
         $(function () {
         $('#container').highcharts({
             chart: {
-                type: 'spline'
+                type: 'spline',
             },
             title: {
                 text: ''
@@ -27,7 +27,7 @@
                 dateTimeLabelFormats: {
                     millisecond: '%L'
                 },
-                max: 1000,
+                max: 1030,
                 tickPositions: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
             },
             yAxis: {
