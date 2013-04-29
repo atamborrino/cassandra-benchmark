@@ -26,12 +26,24 @@ tools/bin/cassandra-stress -d $CASS_HOST -l 3 -n 10000 -o read #-e ALL
 echo -e '=== Read 10000 rows OK === \n'
 
 # Rendering the analysis
-echo -e '\n === Rendering the analysis === \n'
+echo -e '\n === Rendering the analysis - 50 MS === \n'
+bin/nodetool -h $CASS_HOST -p 7100 predictconsistency 3 50 1
+
+echo -e '\n === Rendering the analysis - 100 MS=== \n'
 bin/nodetool -h $CASS_HOST -p 7100 predictconsistency 3 100 1
+
+echo -e '\n === Rendering the analysis - 200 MS=== \n'
+bin/nodetool -h $CASS_HOST -p 7100 predictconsistency 3 200 1
+
+echo -e '\n === Rendering the analysis - 500 MS=== \n'
+bin/nodetool -h $CASS_HOST -p 7100 predictconsistency 3 500 1
+
+echo -e '\n === Rendering the analysis - 1000 MS=== \n'
+bin/nodetool -h $CASS_HOST -p 7100 predictconsistency 3 1000 1
 
 echo -e "=== C'est fini les cocos ! === \n\n"
 
 # Cleaning all our stuffs
 ccm stop
-ccm remove scenarioTwo
+#ccm remove scenarioTwo
 echo -e '=== Clusters removed === \n'
