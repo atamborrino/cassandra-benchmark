@@ -25,6 +25,10 @@
 			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 		</script>
 
+		<style type="text/css">
+			.with-graph {height: 100%;}
+		</style>
+
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -43,7 +47,7 @@
 				</section>
 
 				<!-- slide 1  -->
-				<section style="height:100%">
+				<section class="with-graph">
 					<h1>Cassandra</h1>
 					<iframe id ="1" src="graphs/test.html" height="100%" width="100%" scrolling="no" frameborder="0"><iframe>
 				</section>
