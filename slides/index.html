@@ -41,10 +41,9 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 
-				<!-- slide 0 -->
 				<section>
 					<h2>Apache Cassandra</h2>
-					<h4>Study of tunable consistency</h4>
+					<h4>Trade-offs between consistency and latency</h4>
 				</section>
 
 				<section>
@@ -398,16 +397,14 @@ function linkify( selector ) {
 
 			Reveal.addEventListener( 'slidechanged', function( event ) {
 			    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+			    // event.indexh
 
-			    // $('iframe#' + event.indexh).each(function() {
-			    // 	var src = this.src;
-			    // 	this.src = src;
-			    // });			    
+			    var section = $('div.slides').children('section')[event.indexh];
+			    $(section).children('iframe').each(function() {
+				var src = this.src;
+				this.src = src;
+			});
 
-			    // $('iframe').each(function() {
-			    // 	var src = this.src;
-			    // 	this.src = src;
-			    // });
 			});
 
 		</script>
