@@ -46,10 +46,9 @@
 					<h1>Trade-offs between </h1>
 				</section>
 
-				<!-- slide 1  -->
 				<section class="with-graph">
-					<h1>Cassandra</h1>
-					<iframe id ="1" src="graphs/test.html" height="100%" width="100%" scrolling="no" frameborder="0"><iframe>
+					<h1>Strong consistency</h1>
+					<iframe src="graphs/strongConsistency.html" height="100%" width="100%" scrolling="no" frameborder="0"><iframe>
 				</section>
 
 
@@ -394,7 +393,13 @@ function linkify( selector ) {
 
 			Reveal.addEventListener( 'slidechanged', function( event ) {
 			    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-			    $('iframe#' + event.indexh).each(function() {
+
+			    // $('iframe#' + event.indexh).each(function() {
+			    // 	var src = this.src;
+			    // 	this.src = src;
+			    // });			    
+
+			    $('iframe').each(function() {
 			    	var src = this.src;
 			    	this.src = src;
 			    });
