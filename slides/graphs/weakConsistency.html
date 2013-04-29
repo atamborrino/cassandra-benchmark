@@ -1,0 +1,75 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="../plugin/highcharts/js/highcharts.js"></script>
+        <!-- <script src="../plugin/highcharts/js/modules/exporting.js"></script> -->
+        <script type="text/javascript" src="../plugin/highcharts/js/themes/gray.js"></script>
+		<script type="text/javascript">
+
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                        'R=1 ; W=3',
+                        'R=2 ; W=2',
+                        'R=3 ; W=1',
+                        'R=1; W=2',
+                        'R=1 ; W=1',
+                        'R=2 ; W=1'
+                    ]
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Latency (ms)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f} ms</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Read latency',
+                    data: [17.2,30.4,40.2,16.9,17.0,28.8 ]
+        
+                }, {
+                    name: 'Write latency',
+                    data: [685.4,257.3,73.2,262.8,74.6,74.2]
+        
+                }]
+            });
+        });
+    
+
+		</script>
+	</head>
+	<body>
+
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>
