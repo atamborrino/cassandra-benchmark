@@ -67,7 +67,7 @@
 				</section>
 
 				<section>
-					<h3>Where all began</h3>
+					<h2>Where all began</h2>
 					<p>Strong consistency &amp; low latency = DREAM</p>
 					<p>But the CAP theorem says that we have to choose...</p>
 					<p>What trade-off would be the best? </p>
@@ -75,7 +75,7 @@
 				</section>
 
 				<section>
-					<h3>Program</h3>
+					<h2>Program</h2>
 					<ol>
 					<li>Data model</li>
 					<li>Distribution &amp; Replication model</li>
@@ -100,7 +100,42 @@
 				</section>
 
 				<section>
+					<h2>Benchmark environment</h2>
+				</section>
+
+				<section>
+					<h2>CCM: Cassandra Cluster Manager</h2>
+					<p>a script to easily create and destroy an Apache Cassandra cluster on localhost</p>
+					<br>
+					<p><a href="https://github.com/pcmanus/ccm">Open source on Github</a></p>
+				</section>
+
+				<section>
+					<p>Cassandra 1.2.0</p>
+					<br>
+					<p>Thinkpad Intel i7 CPU, 8 GB of memory, a HDD with a rotational speed of 7200 rpm and runs a Linux 3.7.1 kernel</p>
+					<br>
+					<p>8 nodes and a replication factor of 3</p>
+				</section>
+
+				<section>
+					<h2>Stress scenario</h2>
+					<ul>
+						<li>Use of <a href="http://www.datastax.com/docs/1.1/references/stress_java">Cassandra Stress</a> (part of the standard Cassandra
+						 distribution)</li>
+						<li>10 000 write operations followed by 10 000 read operations.</li>
+						<li>1000 operation per network call, 50 client threads <br>=> very high concurrency</li>
+					</ul>
+				</section>
+
+				<section>
 					<h2>Experiments</h2>
+				</section>
+
+				<section>
+					<p>Look at <strong>ratios and differences</strong>, not at values themselves!</p>
+					<br>
+					<p>(even a Thinkpad is less powerful than a data center with thousands of 32-core machines, isn't it?)</p>
 				</section>
 
 				<section>
@@ -154,7 +189,6 @@
 				</section>
 
 				<section>
-
 					<p>PBS is an algorithm developed at UC Berkeley that allows to make predictions about the <em>probability of consistent reads</em> for Dynamo-style quorum replication</p>
 				</section>
 
@@ -173,12 +207,12 @@
 				</section>
 
 				<section class="with-graph">
-					<h2>k-staleness = 1</h2>
+					<h3>k-staleness = 1</h3>
 					<iframe src="graphs/readConsistencyafterNms.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
 				</section>
 
 				<section class="with-graph">
-					<h2>t-visibility = 100 ms</h2>
+					<h3>t-visibility = 100 ms</h3>
 					<iframe src="graphs/maxStalenessafterNms.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
 				</section>
 
