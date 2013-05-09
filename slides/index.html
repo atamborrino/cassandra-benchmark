@@ -31,6 +31,11 @@
 				border: none !important; 
 				box-shadow: none !important;
 			}
+			.highlight {
+				color: white;
+				background: #26351c;
+				text-shadow: none;
+			}
 		</style>
 
 		<!--[if lt IE 9]>
@@ -59,9 +64,43 @@
 					<!-- insert images of companies -->
 				</section>
 
+				<section>
+					<h2>Distribution &amp; Replication model</h2>
+					<img class="images" src="images/replication_distribution.png" alt="replication distribution">
+					<p>
+						<small>image from <a href="http://www.datastax.com/docs/1.2/cluster_architecture/data_distribution">cassandra documentation</a> </small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Strong consistency</h2>
+					<p>We need R + W > 3. Possible configurations:
+						<ul>
+							<li>R=1, W=3 (read-intensive)</li>
+							<li>R=3, W=1 (read-intensive)</li>
+							<li>R=2, W=2 (in-between)</li>
+						</ul>
+					<p>
+				</section>
+
 				<section class="with-graph">
 					<h2>Strong consistency</h2>
 					<iframe src="graphs/strongConsistency.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
+				</section>
+
+				<section>
+					<h3>But what if our application needs <em>low latency</em> more than strong consistency?</h3>
+				</section>
+
+				<section>
+					<h2>Weak consistency</h2>
+						<p>R + W =< 3. Possibles configurations:
+							<ul>
+								<li>R=1, W=2</li>
+								<li>R=2, W=1</li>
+								<li>R=1, W=1 (weakest consistency)</li>
+							</ul>
+						</p>
 				</section>
 
 				<section class="with-graph">
@@ -74,6 +113,34 @@
 					<iframe src="graphs/compStrongWeakConsistency.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
 				</section>
 
+				<section>
+					<p>But... R and W are parameters. They don't makes sense for an application developper like the latency does.</p>
+					<p>We need <em>better metrics</em> to measure weak consistency</p>
+				</section>
+
+				<section>
+					<h3>Solution: <em>Probabilistically Bounded Staleness</em></h3>
+				</section>
+
+				<section>
+
+					<p>PBS is an algorithm developped at Berkeley UC that allows to make predictions about the <em>probability of consistent reads</em> for Dynamo-style quorum replication</p>
+				</section>
+
+				<section>
+					<h2>2 main parameters</h2>
+					<ul>
+						<li><strong>t-visibility</strong> models the probability that we will read a value t seconds after its write completes.</li>
+						<li><strong>k-staleness</strong> models the probability that we will read a value that is no more than k versions older than the last written version</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>t-visibility answers to the question <br><em>How eventual is eventual consistency?</em></p>
+					<br>
+					<p>k-staleness answers to the question <br><em>How consistent is eventual consistency?</em></p>
+				</section>
+
 				<section class="with-graph">
 					<h2>k-staleness = 1</h2>
 					<iframe src="graphs/readConsistencyafterNms.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
@@ -84,13 +151,15 @@
 					<iframe src="graphs/maxStalenessafterNms.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
 				</section>
 
+				<section>
+					<p>PBS gives metrics for measuring consistency that <em>make sense</em> for a developper that wants to configure Cassandra according to its
+						application needs.</p>
+				</section>
 
 				<section>
-					<h2>Distribution &amp; Replication model</h2>
-					<img class="images" src="images/replication_distribution.png" alt="replication distribution">
-					<p>
-						<small>image from <a href="http://www.datastax.com/docs/1.2/cluster_architecture/data_distribution">cassandra documentation</a> </small>
-					</p>
+					<h2>Future work</h2>
+					<p>Experiment on a real cluster</p>
+					<p>Take into account join/failure of nodes</p>
 				</section>
 
 				<!-- MODEL -->
