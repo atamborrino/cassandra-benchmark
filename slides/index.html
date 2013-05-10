@@ -131,19 +131,21 @@
 
 				<section>
 					<h2>Read operation</h2>
-					<p>Contact N nodes</p>
-					<p>Wait for R of them to return a value</p>
-					<p>Forward the value with the greatest timestamp to the client</p>
-					<br>
-					<p><em>Let Read Repair run in the background to ensure that the N replicas will eventually by consistent</em></p>
+					<ul>
+						<li>Contact N nodes</li>
+						<li>Wait for R of them to return a value</li>
+						<li>Forward the value with the greatest timestamp to the client</li>
+						<li><em>Let Read Repair run in the background to ensure that the N replicas will eventually by consistent</em></li>
+					</ul>
 				</section>
 
 				<section>
 					<h2>Write operation</h2>
-					<p>Contact N nodes</p>
-					<p>Wait for W of them to ACK</p>
-					<br>
-					<p><em>Let Hinted Handoff propagate the write in the background if some of the replicas were down</em></p>
+					<ul>
+						<li>Contact N nodes</li>
+						<li>Wait for W of them to ACK</li>
+						<li><em>Let Hinted Handoff propagate the write in the background if some of the replicas were down</em></li>
+					</ul>
 				</section>
 
 				<section>
