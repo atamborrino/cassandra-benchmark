@@ -89,10 +89,10 @@
 				<section>
 					<h2>Program</h2>
 					<ol>
-					<li>Data Model</li>
-					<li>Distribution &amp; Replication model</li>
-					<li>Experiments</li>
-				</ol>
+						<li>Data model</li>
+						<li>Distribution &amp; Replication model</li>
+						<li>Experiments on trade-offs between consistency and latency</li>
+					</ol>
 				</section>
 
 				<section>
@@ -147,7 +147,7 @@
 						<li>Use of <a href="http://www.datastax.com/docs/1.1/references/stress_java">Cassandra Stress</a> (part of the standard Cassandra
 						 distribution)</li>
 						<li>10 000 write operations followed by 10 000 read operations.</li>
-						<li>1000 operation per network call, 50 client threads <br>=> very high concurrency</li>
+						<li>50 client threads => high concurrency</li>
 					</ul>
 				</section>
 
@@ -223,10 +223,17 @@
 					</ul>
 				</section>
 
+
 				<section>
 					<p>t-visibility answers to the question <br><em>How eventual is eventual consistency?</em></p>
 					<br>
 					<p>k-staleness answers to the question <br><em>How consistent is eventual consistency?</em></p>
+				</section>
+
+				<section>
+					<h2>PBS with Cassandra</h2>
+					<p>Implementation of a PBS predictor in a module of Cassandra 1.2.0</p>
+					<p>Need to manually load the system so that the PBS predictor collects data and make predictions</p>
 				</section>
 
 				<section class="with-graph">
