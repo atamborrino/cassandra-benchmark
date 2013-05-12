@@ -43,7 +43,7 @@
             tooltip: {
                 formatter: function() {
                         return '<b>'+ this.series.name +'</b><br/>'+
-                        'After ' + this.x + ' ms, the read consistency is ' + this.y;
+                        'Probability of reading the last version written is '+this.y+' if we wait '+this.x+' ms after it was written';
                 }
             },
             

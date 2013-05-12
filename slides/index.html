@@ -60,11 +60,11 @@
 
 				<section>
 					<h2>Apache Cassandra?</h2>
-					<p>Distributed Storage System</p>
+					<p>Distributed storage system</p>
 					<p>NoSQL</p>
-					<p>Key-Value Model</p>
-					<p>High Availability</p>
-					<p>No Single Point of Failure</p>
+					<p>Multi-level key-value pair data model</p>
+					<p>High availability</p>
+					<p>Eventual consistency</p>
 				</section>
 
 				<section>
@@ -247,7 +247,7 @@
 				</section>
 
 				<section>
-					<p>PBS is an algorithm developed at UC Berkeley that allows to make predictions about the <em>probability of consistent reads</em> for Dynamo-style quorum replication</p>
+					<p>Probabilistically Bounded Staleness (PBS) is an algorithm developed at UC Berkeley that allows to make predictions about the <em>probability of consistent reads</em> for Dynamo-style quorum replication</p>
 				</section>
 
 				<section>
@@ -256,6 +256,11 @@
 						<li><strong>t-visibility</strong> models the probability that we will read a value t seconds after its write completes.</li>
 						<li><strong>k-staleness</strong> models the probability that we will read a value that is no more than k versions older than the last written version.</li>
 					</ul>
+				</section>
+
+				<section>
+					<h2>Example</h2>
+					<p>(t = 100ms, k = 1) gives the probability that we will read the last written version if we wait 100 ms after it was written.</p>
 				</section>
 
 
@@ -309,7 +314,7 @@
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				controls: true,
+				controls: false,
 				progress: true,
 				history: true,
 				center: true,

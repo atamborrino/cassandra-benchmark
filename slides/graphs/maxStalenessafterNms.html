@@ -43,7 +43,7 @@
             tooltip: {
                 formatter: function() {
                         return '<b>'+ this.series.name +'</b><br/>'+
-                        'After ' + this.x + ' ms, the probability of reading a version of the data not older than ' + this.y + ' versions';
+                        'The probability of reading a value that is no more than ' + this.x + ' versions older than the last written value is '+this.y;
                 }
             },
             
