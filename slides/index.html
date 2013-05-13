@@ -299,17 +299,16 @@
 						<h2 style="padding-bottom:20px">Trade-offs</h2>
 						<tr>
 							<th>R/W</th>
-							<th>R latency (ms)</th>
-							<th>W latency (ms)</th>
+							<th>Read performance</th>
 							<th>P(consistent R) for (t=100ms, k=1)</th>
 						</tr>
 						<tr>
-							<td>3/1</td><td>40.2</td><td>73.2</td><td>1</td>
+							<td>3/1</td><td>1.0x</td><td>1</td>
 						<tr>
-							<td>2/1</td><td>28.8</td><td>74.2</td><td>0.79</td>
+							<td>2/1</td><td>1.4x</td><td>0.79</td>
 						</tr>
 						<tr>
-							<td>1/1</td><td>17.0</td><td>74.6</td><td>0.49</td>
+							<td>1/1</td><td>2.4x</td><td>0.49</td>
 						</tr>
 					</table>
 				</section>
