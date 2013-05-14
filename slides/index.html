@@ -55,8 +55,7 @@
 				<section>
 					<img class="images" src="images/icon_cassandra.png" width="20%" alt="icon cassandra" />
 					<h3>Apache Cassandra - A Decentralized Structured Storage System</h3>
-					<h4>Avinash Lakshman, <em>Facebook</em></h4>
-					<h4>Prashant Malik, <em>Facebook</em></h4>
+					<p>from the paper of Avinash Lakshman, <em>Facebook</em> <br />& Prashant Malik, <em>Facebook</em></p>
 				</section>
 
 				<section>
@@ -65,8 +64,8 @@
 					<p>NoSQL</p>
 					<p>Multi dimensional map as a data model</p>
 					<p>High availability (fault tolerance + low latency)</p>
-					<p>Eventual consistency</p>
 					<p>High write throughput</p>
+					<p>Eventual consistency</p>
 				</section>
 
 				<section>
@@ -183,7 +182,7 @@
 				</section>
 
 				<section>
-					<h2>Bootstraping of a node</h2>
+					<h2>Bootstrapping of a node</h2>
 				</section>
 
 				<section>
@@ -192,37 +191,17 @@
 				</section>
 
 				<section>
-					<p>The new node</p>
+					<h3>When bootstrapping, a new node...</h3>
 					<ul>
 						<li>Is assigned a token</li>
+						<br>
 						<li>Contacts its seed nodes to gossip its token and obtain information about the other nodes in the cluster</li>
-						<li>if added in an existing cluster, the data it is responsible for is transferred to it using kernel-to-kernel copy from
-							<ul>
-								<li>another node if virtual nodes are not used</li>
-								<li>several other nodes if virtual nodes are used</li>
-							</ul>
-							
-						</li>
-					</ul>
-				</section>
-				
-				<section>
-					<img class="images" src="images/virtualnodes.png" alt="replication distribution">
-					<p>
-						<small>image source: <a href="http://www.datastax.com/docs/1.2/cluster_architecture/data_distribution">cassandra documentation</a> </small>
-					</p>
-				</section>
-
-				<section>
-					<h2>Future work</h2>
-					<ul>
-						<li>compression</li>
-						<li>atomicity across keys</li>
-						<li>secondary index</li>
+						<br>
+						<li>If added in an existing cluster, gets the data it is responsible for using kernel-kernel copy from the node previously responsible for 
+							this data</li>
 					</ul>
 
 				</section>
-
 
 				<section>
 					<h2>Distribution &amp; Replication model</h2>
@@ -273,6 +252,16 @@
 						<li>UDP for control messages</li>
 						<li>TCP for application level messages</li>
 					</ul>
+				</section>
+
+				<section>
+					<h2>Future work</h2>
+					<ul>
+						<li>compression</li>
+						<li>atomicity across keys</li>
+						<li>secondary index</li>
+					</ul>
+
 				</section>
 
 				
