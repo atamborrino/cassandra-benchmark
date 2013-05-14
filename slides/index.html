@@ -232,14 +232,47 @@
 				<section>
 					<h2>Membership</h2>
 					<p>Cluster membership is based on an anti-entropy gossip algorithm (Scuttlebutt)</p>
+					<p>Also used for system-related control messages</p>
 				</section>
 
 				<section>
 					<h2>Failure detection</h2>
+					<p>Use of the <em>Phi Accrual Failure Detector</em>. Basic idea: <br />
+					the failure detector return a value on a continuous scale which represents a suspicion level for each of monitored nodes</p>
+					<br />
+					<p>Use of gossip messages as heartbeats</p>
 				</section>
 
 				<section>
+					<h2>Local persistence</h2>
+				</section>
 
+				<section>
+					<p>Data is persisted on disk using a format that lends itself to efficient data retrieval</p>
+				</section>
+
+				<section>
+					<p>A typical <em>write</em> operation involves a write into a commit log and then an update into an in-memory data structure</p>
+					<br />
+					<p>When reaching a size threshold, the in-memory data structure is dumped on disk and an index is created for it</p>
+					<br />
+					<p>Periodically, a merge process runs in the background to merge the different dumped files into one file</p>
+				</section>
+
+				<section>
+					<p>A typical <em>read</em> operation first queries the in-memory data structure before looking into the files on disk.</p>
+					<br />
+					<p>Optimization possible: put a particular row key in-memory when we know that we will use it soon</p>
+				</section>
+
+				<section>
+					<h2>Implementation</h2>
+					<ul>
+						<li>Java</li>
+						<li>Non-blocking IO with Java NIO</li>
+						<li>UDP for control messages</li>
+						<li>TCP for application level messages</li>
+					</ul>
 				</section>
 
 				
