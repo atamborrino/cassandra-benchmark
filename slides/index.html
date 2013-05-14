@@ -108,15 +108,68 @@
 				</section>
 
 				<section>
-					<h2>Distribution &amp; Replication model</h2>
+					<h2>Data partitioning</h2>
 				</section>
 
 				<section>
-					<img class="images" src="images/replication_distribution.png" alt="replication distribution">
+					<h3>consistent hashing</h3>
+					<p>old version: order preserving hashing</p>
+					<p>new version: default is uniform hashing but we can still choose the order preserving version</p>
+				</section>
+
+				<section>
+					<img class="images" src="images/partitioning.png" alt="partitioning">
 					<p>
-						<small>from <a href="http://www.datastax.com/docs/1.2/cluster_architecture/data_distribution">cassandra documentation</a> </small>
+						<small>image source: <a href="http://www.datastax.com/docs/1.2/cluster_architecture/data_distribution">cassandra documentation</a> </small>
 					</p>
 				</section>
+
+				<section>
+					<h3>Strong point</h3>
+					<p>When a node join/leave, only its immediate neighbours are affected</p>
+				</section>
+
+				<section>
+					<h3>Weak points</h3>
+					<p>poor load balancing</p>
+					<p>nodes performance not taken in account</p>
+				</section>
+
+				<section>
+					<h3>Solution</h3>
+					<p>old version: make nodes move along the ring to better distribute the load among them</p>
+					<p>new version: like in Dynamo, several virtual nodes run on each physical node</p>
+				</section>
+
+				<section>
+					<h2>Data replication</h2>
+					<p><em>to ensure fault tolerance and availability</em></p>
+				</section>
+
+				<section>
+					<h3>Simple strategie</h3>
+					<img class="images" src="images/replication_distribution.png" alt="replication distribution">
+					<p>
+						<small>image source: <a href="http://www.datastax.com/docs/1.2/cluster_architecture/data_distribution">cassandra documentation</a> </small>
+					</p>
+
+				</section>
+
+
+				
+				<section>
+					<img class="images" src="images/replication_distribution.png" alt="replication distribution">
+					<p>
+						<small>image source: <a href="http://www.datastax.com/docs/1.2/cluster_architecture/data_distribution">cassandra documentation</a> </small>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Distribution &amp; Replication model</h2>
+				</section>
+
+				
 
 				<section>
 					<h2>Dynamo-style quorum replication</h2>
@@ -142,164 +195,6 @@
 						<li>Wait for W of them to ACK</li>
 						<li><em>Let Hinted Handoff propagate the write in the background if some of the replicas were down</em></li>
 					</ul>
-				</section>
-
-				<section>
-					<h2>Benchmark environment</h2>
-				</section>
-
-				<section>
-					<h2>CCM: Cassandra Cluster Manager</h2>
-					<p>A tool to easily create and destroy an Apache Cassandra cluster on localhost</p>
-					<br>
-					<p><a href="https://github.com/pcmanus/ccm">Open source on Github</a></p>
-				</section>
-
-				<section>
-					<h2>Platform</h2>
-					<p>Thinkpad Intel i7 CPU, 8 GB of memory, a HDD with a rotational speed of 7200 rpm, Linux 3.7.1 kernel</p>
-					<br>
-					<p>Cassandra 1.2.0 cluster</p>
-					<p>8 nodes, replication factor of 3</p>
-				</section>
-
-				<section>
-					<h2>Stress scenario</h2>
-					<ul>
-						<li>Use of <a href="http://www.datastax.com/docs/1.1/references/stress_java">Cassandra Stress</a> (part of the standard Cassandra
-						 distribution)</li>
-						<li>10 000 writes followed by 10 000 reads</li>
-						<li>50 client threads => high concurrency</li>
-
-					</ul>
-				</section>
-
-				<section>
-					<h2>Experiments</h2>
-				</section>
-
-				<section>
-					<p>Look at <strong>ratios and differences</strong>, not at the values themselves!</p>
-				</section>
-
-				<section>
-					<h2>Strong consistency</h2>
-					<div>
-						<img class="images" src="images/strong_consistency.png" alt="strong consistency">
-					</div>
-					<div>
-						<p>We need R + W > 3. Possible configurations:
-							<ul>
-								<li>R=1, W=3 (read-intensive)</li>
-								<li>R=3, W=1 (write-intensive)</li>
-								<li>R=2, W=2 (in-between)</li>
-							</ul>
-						<p>
-					</div>
-				</section>
-
-				<section class="with-graph">
-					<h2>Strong consistency</h2>
-					<iframe src="graphs/strongConsistency.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
-				</section>
-
-				<section>
-					<h3>But what if our application needs <em>low latency</em> more than strong consistency?</h3>
-				</section>
-
-				<section>
-					<h2>Weak consistency</h2>
-						<img class="images" src="images/Weak consistency.png" alt="weak consistency">
-
-						<p>R + W &le; 3. Possible configurations:
-							<ul>
-								<li>R=1, W=2</li>
-								<li>R=2, W=1</li>
-								<li>R=1, W=1 (weakest consistency)</li>
-							</ul>
-						</p>
-				</section>
-
-				<section class="with-graph">
-					<h2>Weak consistency</h2>
-					<iframe src="graphs/weakConsistency.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
-				</section>
-
-				<section class="with-graph">
-					<h2>Comparison</h2>
-					<iframe src="graphs/compStrongWeakConsistency.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
-				</section>
-
-				<section>
-					<p>But... R and W are parameters. They don't make sense for an application developer like the latency does.</p>
-					<p>We need <em>better metrics</em> to measure weak consistency</p>
-				</section>
-
-				<section>
-					<h3>Solution: <em>Probabilistically Bounded Staleness</em></h3>
-				</section>
-
-				<section>
-					<p>Probabilistically Bounded Staleness (PBS) is an algorithm developed at UC Berkeley that allows to make predictions about the <em>probability of consistent reads</em> for Dynamo-style quorum replication</p>
-				</section>
-
-				<section>
-					<h2>2 main parameters</h2>
-					<ul>
-						<li><strong>t-visibility</strong> models the probability that we will read a value t seconds after its write completes.</li>
-						<li><strong>k-staleness</strong> models the probability that we will read a value that is no more than k versions older than the last written version.</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Example</h2>
-					<p>(t = 100ms, k = 1) gives the probability that we will read the last written version if we wait 100 ms after it was written.</p>
-				</section>
-
-
-				<section>
-					<p>t-visibility answers to the question <br><em>How eventual is eventual consistency?</em></p>
-					<br>
-					<p>k-staleness answers to the question <br><em>How consistent is eventual consistency?</em></p>
-				</section>
-
-				<section>
-					<h2>PBS with Cassandra</h2>
-					<p>Implementation of a PBS predictor in a module of Cassandra 1.2.0</p>
-					<p>Need to manually run a workload on the cluster for PBS predictor to collect data and make predictions</p>
-				</section>
-
-				<section class="with-graph">
-					<h3>k-staleness = 1</h3>
-					<iframe src="graphs/readConsistencyafterNms.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
-				</section>
-
-				<section class="with-graph">
-					<h3>t-visibility = 100 ms</h3>
-					<iframe src="graphs/maxStalenessafterNms.html" height="100%" width="100%" scrolling="no" frameborder="0"></iframe>
-				</section>
-
-				<section>
-					<p>PBS gives metrics for measuring consistency that <em>make sense</em> for an application developer.</p>
-				</section>
-
-				<section style="font-size:30px;position:relative;right:10px">
-					<table>
-						<h2 style="padding-bottom:20px">Trade-offs</h2>
-						<tr>
-							<th>R/W</th>
-							<th>Read performance</th>
-							<th>P(consistent R) for (t=100ms, k=1)</th>
-						</tr>
-						<tr>
-							<td>3/1</td><td>1.0x</td><td>1</td>
-						<tr>
-							<td>2/1</td><td>1.4x</td><td>0.79</td>
-						</tr>
-						<tr>
-							<td>1/1</td><td>2.4x</td><td>0.49</td>
-						</tr>
-					</table>
 				</section>
 
 				<section>
