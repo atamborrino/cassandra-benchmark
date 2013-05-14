@@ -116,11 +116,11 @@
 				</section>
 
 				<section>
-					<h3>consistent hashing</h3>
+					<h2>Consistent hashing</h2>
 					<p><em>old version</em></p>
 					<p> order preserving hashing</p>
 					<p><em>new version</em></p> 
-					<p>default is uniform hashing but we can still choose the order preserving version</p>
+					<p>default is uniform hashing but we can still choose the order preserving hashing</p>
 				</section>
 
 				<section>
@@ -144,7 +144,7 @@
 				</section>
 
 				<section>
-					<h3>Solution</h3>
+					<h2>Solution</h2>
 					<p><em>old version</em></p>
 					<p>make nodes move along the ring to better distribute the load among them</p>
 					<p><em>new version</em></p>
@@ -158,11 +158,34 @@
 				<section>
 					<p>Data are replicated for fault-tolerance and availability</p>
 					<p>The replication factor is defined per instance</p>
-					<p>Cassandra provides different replication strategies</p>
+					<p>Conflict resolution is done at a system level, unlike Dynamo that let the client do it</p>
 				</section>
 
 				<section>
-					<h3>Simple strategie</h3>
+					<h2>Read operation</h2>
+					<ul>
+						<li>Contact N nodes</li>
+						<li>Wait for R of them to return a value</li>
+						<li>Forward the value with the greatest timestamp to the client</li>
+						<li><em>Let Read Repair run in the background to ensure that the N replicas will eventually by consistent</em></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Write operation</h2>
+					<ul>
+						<li>Contact N nodes</li>
+						<li>Wait for W of them to ACK</li>
+						<li><em>Let Hinted Handoff propagate the write in the background if some of the replicas were down</em></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Replication strategies</h2>
+				</section>
+
+				<section>
+					<h2>Simple strategy</h2>
 					<img class="images" src="images/replication_distribution.png" alt="replication distribution">
 					<p>
 						<small>image source: <a href="http://www.datastax.com/docs/1.2/cluster_architecture/data_distribution">cassandra documentation</a> </small>
@@ -171,15 +194,15 @@
 				</section>
 
 				<section>
-					<h3>Topoly aware strategies</h3>
+					<h2>Topoly aware strategies</h2>
 						<p>Use Zookeeper for coordination and fault-tolerance</p>
 					<p><em>Rack aware</em></p>
 					<p>data replicated at nodes on different racks</p>
 					<p><em>Data center aware</em></p>
 					<p>data replicated across several data centers</p>
-
-
 				</section>
+
+
 
 				<section>
 					<h2>Bootstrapping of a node</h2>
@@ -204,11 +227,6 @@
 				</section>
 
 				<section>
-					<h2>Distribution &amp; Replication model</h2>
-				</section>
-
-
-				<section>
 					<h2>Membership</h2>
 					<p>Cluster membership is based on an anti-entropy gossip algorithm (Scuttlebutt)</p>
 					<p>Also used for system-related control messages</p>
@@ -216,8 +234,8 @@
 
 				<section>
 					<h2>Failure detection</h2>
-					<p>Use of the <em>Phi Accrual Failure Detector</em>. Basic idea: <br />
-					the failure detector return a value on a continuous scale which represents a suspicion level for each of monitored nodes</p>
+					<p>Use of the <em>Phi Accrual Failure Detector</em></p>
+					<p>Basic idea: the failure detector returns a value which represents a suspicion level for each of the monitored nodes</p>
 					<br />
 					<p>Use of gossip messages as heartbeats</p>
 				</section>
@@ -227,7 +245,7 @@
 				</section>
 
 				<section>
-					<p>Data is persisted on disk using a format that lends itself to efficient data retrieval</p>
+					<p>Data is persisted on disk using a format that allows efficient data retrieval</p>
 				</section>
 
 				<section>
@@ -239,9 +257,9 @@
 				</section>
 
 				<section>
-					<p>A typical <em>read</em> operation first queries the in-memory data structure before looking into the files on disk.</p>
+					<p>A typical <em>read</em> operation first queries the in-memory data structure before looking into the files on disk</p>
 					<br />
-					<p>Optimization possible: put a particular row key in-memory when we know that we will use it soon</p>
+					<p>Possible optimization: put a particular row key in-memory when we know that we will use it soon</p>
 				</section>
 
 				<section>
@@ -262,35 +280,7 @@
 						<li>secondary index</li>
 					</ul>
 
-				</section>
-
-				
-
-				<section>
-					<h2>Dynamo-style quorum replication</h2>
-					<p>Standard replication factor in Cassandra: N=3</p>
-					<p>How many nodes should respond before we can consider a read/write operation as completed?</p>
-					<p>R/W parameters define the consistency level we want.</p>
-				</section>
-
-				<section>
-					<h2>Read operation</h2>
-					<ul>
-						<li>Contact N nodes</li>
-						<li>Wait for R of them to return a value</li>
-						<li>Forward the value with the greatest timestamp to the client</li>
-						<li><em>Let Read Repair run in the background to ensure that the N replicas will eventually by consistent</em></li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Write operation</h2>
-					<ul>
-						<li>Contact N nodes</li>
-						<li>Wait for W of them to ACK</li>
-						<li><em>Let Hinted Handoff propagate the write in the background if some of the replicas were down</em></li>
-					</ul>
-				</section>
+				</section>		
 
 				<section>
 					<h1>THE END</h1>
