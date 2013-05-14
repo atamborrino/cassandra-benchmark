@@ -180,18 +180,27 @@
 				</section>
 
 				<section>
-					<p>Uses Zookeeper for configuration and fault-tolerance</p>
-					<p>The new node</p>
-					<ul>
-						<li>Chooses a random token</li>
-						<li>Contacts its seed nodes to gossip its token and obtain information about the other nodes in the cluster</li>
-					</ul>
+					<p>Uses Zookeeper is used for configuration and fault-tolerance</p>
+					<p>Has to be done explicitly to prevent errors</p>
 				</section>
 
-
+				<section>
+					<p>The new node</p>
+					<ul>
+						<li>Is assigned a token</li>
+						<li>Contacts its seed nodes to gossip its token and obtain information about the other nodes in the cluster</li>
+						<li>if added in an existing cluster, the data it is responsible for is transferred to it using kernel-to-kernel copy from
+							<ul>
+								<li>another node if virtual nodes are not used</li>
+								<li>several other nodes if virtual nodes are used</li>
+							</ul>
+							
+						</li>
+					</ul>
+				</section>
 				
 				<section>
-					<img class="images" src="images/replication_distribution.png" alt="replication distribution">
+					<img class="images" src="images/virtualnodes.png" alt="replication distribution">
 					<p>
 						<small>image source: <a href="http://www.datastax.com/docs/1.2/cluster_architecture/data_distribution">cassandra documentation</a> </small>
 					</p>
