@@ -66,6 +66,7 @@
 					<p>Multi dimensional map as a data model</p>
 					<p>High availability (fault tolerance + low latency)</p>
 					<p>Eventual consistency</p>
+					<p>High write throughput</p>
 				</section>
 
 				<section>
@@ -117,8 +118,10 @@
 
 				<section>
 					<h3>consistent hashing</h3>
-					<p>old version: order preserving hashing</p>
-					<p>new version: default is uniform hashing but we can still choose the order preserving version</p>
+					<p><em>old version</em></p>
+					<p> order preserving hashing</p>
+					<p><em>new version</em></p> 
+					<p>default is uniform hashing but we can still choose the order preserving version</p>
 				</section>
 
 				<section>
@@ -129,20 +132,24 @@
 				</section>
 
 				<section>
-					<h3>Strong point</h3>
-					<p>When a node join/leave, only its immediate neighbours are affected</p>
-				</section>
+					<p><b><span style="color:green;">++</span></b></p>
+					<ul>
+						<li>when a node join/leave, only its immediate neighbours are affected</li>
+					</ul>
+					<p><b><span style="color:red;">--</span></b></p>
+					<ul>
+						<li>poor load balancing, even worse with order preserving hashing</li>
+						<li>nodes performance not taken in account</li>
+					</ul>
 
-				<section>
-					<h3>Weak points</h3>
-					<p>poor load balancing, even worse with order preserving hashing</p>
-					<p>nodes performance not taken in account</p>
 				</section>
 
 				<section>
 					<h3>Solution</h3>
-					<p>old version: make nodes move along the ring to better distribute the load among them</p>
-					<p>new version: like in Dynamo, several virtual nodes run on each physical node</p>
+					<p><em>old version</em></p>
+					<p>make nodes move along the ring to better distribute the load among them</p>
+					<p><em>new version</em></p>
+					<p> like in Dynamo, several virtual nodes run on each physical node</p>
 				</section>
 
 				<section>
@@ -167,10 +174,10 @@
 				<section>
 					<h3>Topoly aware strategies</h3>
 						<p>Use Zookeeper for coordination and fault-tolerance</p>
-					<ul>
-						<li>Rack aware: data replicated at nodes on different racks</li>
-						<li>Data center aware: data replicated across several data centers</li>
-					</ul>
+					<p><em>Rack aware</em></p>
+					<p>data replicated at nodes on different racks</p>
+					<p><em>Data center aware</em></p>
+					<p>data replicated across several data centers</p>
 
 
 				</section>
