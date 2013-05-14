@@ -54,16 +54,17 @@
 
 				<section>
 					<img class="images" src="images/icon_cassandra.png" width="20%" alt="icon cassandra" />
-					<h2>Apache Cassandra</h2>
-					<h4>Trade-offs between consistency and latency</h4>
+					<h3>Apache Cassandra - A Decentralized Structured Storage System</h3>
+					<h4>Avinash Lakshman, <em>Facebook</em></h4>
+					<h4>Prashant Malik, <em>Facebook</em></h4>
 				</section>
 
 				<section>
 					<h2>Apache Cassandra?</h2>
 					<p>Distributed storage system</p>
 					<p>NoSQL</p>
-					<p>Multi-level key-value pair data model</p>
-					<p>High availability</p>
+					<p>Multi dimensional map as a data model</p>
+					<p>High availability (fault tolerance + low latency)</p>
 					<p>Eventual consistency</p>
 				</section>
 
@@ -80,20 +81,12 @@
 				</section>
 
 				<section>
-					<h2>Where all began</h2>
-					<p>Strong consistency &amp; low latency = DREAM</p>
-					<p>But the CAP theorem says that we have to choose...</p>
-					<p>What trade-off would be the best? </p>
-					<p>Depends...</p>
+					<h2>Related work</h2>
 				</section>
 
 				<section>
-					<h2>Program</h2>
-					<ol>
-						<li>Data model</li>
-						<li>Distribution &amp; Replication model</li>
-						<li>Experiments on trade-offs between consistency and latency</li>
-					</ol>
+						<p>Data model inspired from <em>Google's BigTable</em></p>
+						<p>Partitioning and replication model inspired from <em>Amazon's Dynamo</em></p>
 				</section>
 
 				<section>
@@ -101,21 +94,17 @@
 				</section>
 
 				<section>
+					<p>Schema-free <span style="color:red;">map</span> of <span style="color:green">map</span> (of <span style="color:blue">map</span>)</p>
+					<br>
+					<p>A column family contains <span style="color:red;">row keys</span>  that contains <span style="color:green">columns</span> (that can contain<span style="color:blue"> columns</span>)</p>
+				</section>
+
+				<section>
 					<img class="images" src="images/data_model_1.png" alt="data model - first slide" />
 				</section>
 
 				<section>
-					<img class="images" src="images/data_model_2.png" alt="data model - second slide" />
-				</section>
-
-				<section>
 					<img class="images" src="images/data_model_3.png" alt="data model - third slide" />
-				</section>
-
-				<section>
-					<h2>Transactions?</h2>
-					<p>No Transaction support</p>
-					<p>But <em>Atomicity</em> and <em>Isolation</em> at a row level</p>
 				</section>
 
 				<section>
