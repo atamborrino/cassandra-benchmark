@@ -135,7 +135,7 @@
 
 				<section>
 					<h3>Weak points</h3>
-					<p>poor load balancing</p>
+					<p>poor load balancing, even worse with order preserving hashing</p>
 					<p>nodes performance not taken in account</p>
 				</section>
 
@@ -147,7 +147,12 @@
 
 				<section>
 					<h2>Data replication</h2>
-					<p><em>to ensure fault tolerance and availability</em></p>
+				</section>
+
+				<section>
+					<p>Data are replicated for fault-tolerance and availability</p>
+					<p>The replication factor is defined per instance</p>
+					<p>Cassandra provides different replication strategies</p>
 				</section>
 
 				<section>
@@ -157,6 +162,29 @@
 						<small>image source: <a href="http://www.datastax.com/docs/1.2/cluster_architecture/data_distribution">cassandra documentation</a> </small>
 					</p>
 
+				</section>
+
+				<section>
+					<h3>Topoly aware strategies</h3>
+						<p>Use Zookeeper for coordination and fault-tolerance</p>
+					<ul>
+						<li>Rack aware: data replicated at nodes on different racks</li>
+						<li>Data center aware: data replicated across several data centers</li>
+					</ul>
+
+
+				</section>
+
+				<section>
+					<h2>Bootstraping of a node</h2>
+				</section>
+
+				<section>
+					<p>Uses Zookeeper for configuration and fault-tolerance</p>
+					<ul>
+						<li>Chooses a random token</li>
+						<li>Contact its seed nodes to gossip its token and obtain information about the other nodes in the cluster</li>
+					</ul>
 				</section>
 
 
