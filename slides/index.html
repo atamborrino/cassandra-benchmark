@@ -249,6 +249,7 @@
 				</section>
 
 				<section>
+					<h2>Write</h2>
 					<p>A typical <em>write</em> operation involves a write into a commit log and then an update into an in-memory data structure</p>
 					<br />
 					<p>When reaching a size threshold, the in-memory data structure is dumped on disk and an index is created for it</p>
@@ -257,6 +258,7 @@
 				</section>
 
 				<section>
+					<h2>Read</h2>
 					<p>A typical <em>read</em> operation first queries the in-memory data structure before looking into the files on disk</p>
 					<br />
 					<p>Possible optimization: put a particular row key in-memory when we know that we will use it soon</p>
