@@ -351,17 +351,17 @@
 				]
 			});
 
-			Reveal.addEventListener( 'slidechanged', function( event ) {
-			    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-			    // event.indexh
+			// Reveal.addEventListener( 'slidechanged', function( event ) {
+			//     // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+			//     // event.indexh
 
-			    var section = $('div.slides').children('section')[event.indexh];
-			    $(section).children('iframe').each(function() {
-				var src = this.src;
-				this.src = src;
-			});
+			//     var section = $('div.slides').children('section')[event.indexh];
+			//     $(section).children('iframe').each(function() {
+			// 	var src = this.src;
+			// 	this.src = src;
+			// });
 
-			});
+			// });
 
 		</script>
 
