@@ -57,8 +57,6 @@ echo -e '\n === Rendering the analysis - 100 MS - Staleness 10 === \n'
 bin/nodetool -h $CASS_HOST -p 7100 predictconsistency 3 100 10
 
 
-echo -e "=== C'est fini les cocos ! === \n\n"
-
 # Cleaning all our stuffs
 ccm stop
 ccm remove scenarioSix

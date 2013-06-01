@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Create a new instance with 4 nodes
+# Create a new instance with 8 nodes
 ccm create scenarioThree -v 1.2.0
 ccm populate -n 8
 ccm start

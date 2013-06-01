@@ -65,8 +65,6 @@ bin/nodetool -h $CASS_HOST -p 7100 predictconsistency 3 1000 1
 echo -e '\n === Rendering the analysis - 2000 MS=== \n'
 bin/nodetool -h $CASS_HOST -p 7100 predictconsistency 3 2000 1
 
-echo -e "=== C'est fini les cocos ! === \n\n"
-
 # Cleaning all our stuffs
 ccm stop
 ccm remove scenarioTwo2
